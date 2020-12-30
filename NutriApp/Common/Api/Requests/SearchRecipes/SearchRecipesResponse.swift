@@ -1,0 +1,58 @@
+//
+//  SearchRecipesResponse.swift
+//  NutriApp
+//
+//  Created by Fahim Jatmiko on 30/12/20.
+//
+
+import Foundation
+
+struct DtoSearchRecipesResponse : Codable {
+
+    let number : Int?
+    let offset : Int?
+    let results : [DtoSearchResult]?
+    let totalResults : Int?
+
+    enum CodingKeys: String, CodingKey {
+        case number = "number"
+        case offset = "offset"
+        case results = "results"
+        case totalResults = "totalResults"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        number = try values.decodeIfPresent(Int.self, forKey: .number)
+        offset = try values.decodeIfPresent(Int.self, forKey: .offset)
+        results = try values.decodeIfPresent([DtoSearchResult].self, forKey: .results)
+        totalResults = try values.decodeIfPresent(Int.self, forKey: .totalResults)
+    }
+
+
+}
+
+struct DtoSearchResult : Codable {
+
+    let id : Int?
+    let image : String?
+    let imageType : String?
+    let title : String?
+
+
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case image = "image"
+        case imageType = "imageType"
+        case title = "title"
+    }
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        image = try values.decodeIfPresent(String.self, forKey: .image)
+        imageType = try values.decodeIfPresent(String.self, forKey: .imageType)
+        title = try values.decodeIfPresent(String.self, forKey: .title)
+    }
+
+
+}

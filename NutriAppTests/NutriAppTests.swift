@@ -17,17 +17,45 @@ class NutriAppTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    func testSearchRecipes() {
+        let expectation = self.expectation(description: "testSearchRecipes")
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+        let request = Endpoints.SearchRecipesRequest(query: "")
+        ApiClient.shared.send(request, completion: {response in
+            print(response)
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+            XCTAssert(response.number != nil)
+            expectation.fulfill()
+
+        }) {error in
+            print(error)
+
+            XCTAssert(false)
+            expectation.fulfill()
         }
+
+        waitForExpectations(timeout: 5000, handler: nil)
+    }
+    
+    func testGetRecipe() {
+        let expectation = self.expectation(description: "testGetRecipe")
+
+        let request = Endpoints.GetRecipeInfoRequest(id: 715439)
+        ApiClient.shared.send(request, completion: {response in
+            print(response)
+
+            XCTAssert(response.id != nil)
+            expectation.fulfill()
+
+        }) {error in
+            print(error)
+
+            XCTAssert(false)
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 5000, handler: nil)
     }
 
 }

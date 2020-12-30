@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7553F0D574326275DE4483F2 /* Pods_NutriApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B05BC34A1A992BE634CC059 /* Pods_NutriApp.framework */; };
+		BE8E581ADC8ACF53540F36F3 /* Pods_NutriAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB626795BC3CF678ACAB1D2B /* Pods_NutriAppTests.framework */; };
 		DD568B52259C3487009ACD5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD568B51259C3487009ACD5A /* AppDelegate.swift */; };
 		DD568B54259C3487009ACD5A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD568B53259C3487009ACD5A /* SceneDelegate.swift */; };
 		DD568B56259C3487009ACD5A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD568B55259C3487009ACD5A /* ViewController.swift */; };
@@ -14,7 +16,17 @@
 		DD568B5B259C3489009ACD5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD568B5A259C3489009ACD5A /* Assets.xcassets */; };
 		DD568B5E259C3489009ACD5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD568B5C259C3489009ACD5A /* LaunchScreen.storyboard */; };
 		DD568B69259C3489009ACD5A /* NutriAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD568B68259C3489009ACD5A /* NutriAppTests.swift */; };
-		DD568B74259C3489009ACD5A /* NutriAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD568B73259C3489009ACD5A /* NutriAppUITests.swift */; };
+		DD568B90259C3882009ACD5A /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD568B8F259C3882009ACD5A /* ApiClient.swift */; };
+		DD568B96259C3896009ACD5A /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD568B95259C3896009ACD5A /* ApiRequest.swift */; };
+		DD568B9A259C38B3009ACD5A /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD568B99259C38B3009ACD5A /* BaseResponse.swift */; };
+		DD568BAE259C3E5D009ACD5A /* GetRecipesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD568BAD259C3E5D009ACD5A /* GetRecipesRequest.swift */; };
+		DD568BB2259C3E73009ACD5A /* GetRecipesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD568BB1259C3E73009ACD5A /* GetRecipesResponse.swift */; };
+		DD568BB6259C3E9E009ACD5A /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD568BB5259C3E9E009ACD5A /* Endpoints.swift */; };
+		DD568BC1259C8195009ACD5A /* GetRecipeInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD568BC0259C8195009ACD5A /* GetRecipeInfoResponse.swift */; };
+		DD568BC8259C88EB009ACD5A /* SearchRecipesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD568BC7259C88EB009ACD5A /* SearchRecipesResponse.swift */; };
+		DD568BCE259C88FB009ACD5A /* SearchRecipesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD568BCD259C88FB009ACD5A /* SearchRecipesRequest.swift */; };
+		DD568BD2259C8908009ACD5A /* GetRecipeInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD568BD1259C8908009ACD5A /* GetRecipeInfoRequest.swift */; };
+		DD568BDD259C934F009ACD5A /* DtoApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD568BDC259C934F009ACD5A /* DtoApiError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,16 +37,14 @@
 			remoteGlobalIDString = DD568B4D259C3487009ACD5A;
 			remoteInfo = NutriApp;
 		};
-		DD568B70259C3489009ACD5A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DD568B46259C3487009ACD5A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DD568B4D259C3487009ACD5A;
-			remoteInfo = NutriApp;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05F2B55982ED3782E2B92649 /* Pods-NutriAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriAppTests.release.xcconfig"; path = "Target Support Files/Pods-NutriAppTests/Pods-NutriAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		1B05BC34A1A992BE634CC059 /* Pods_NutriApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NutriApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C863EE2CD2F3ECFE4CC1DF0 /* Pods-NutriApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriApp.release.xcconfig"; path = "Target Support Files/Pods-NutriApp/Pods-NutriApp.release.xcconfig"; sourceTree = "<group>"; };
+		3D79AA4CA0B8FD136F3E6BCA /* Pods-NutriAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriAppTests.debug.xcconfig"; path = "Target Support Files/Pods-NutriAppTests/Pods-NutriAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BB626795BC3CF678ACAB1D2B /* Pods_NutriAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NutriAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD568B4E259C3487009ACD5A /* NutriApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutriApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD568B51259C3487009ACD5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD568B53259C3487009ACD5A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,9 +56,18 @@
 		DD568B64259C3489009ACD5A /* NutriAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NutriAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD568B68259C3489009ACD5A /* NutriAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutriAppTests.swift; sourceTree = "<group>"; };
 		DD568B6A259C3489009ACD5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DD568B6F259C3489009ACD5A /* NutriAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NutriAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD568B73259C3489009ACD5A /* NutriAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutriAppUITests.swift; sourceTree = "<group>"; };
-		DD568B75259C3489009ACD5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD568B8F259C3882009ACD5A /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		DD568B95259C3896009ACD5A /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
+		DD568B99259C38B3009ACD5A /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
+		DD568BAD259C3E5D009ACD5A /* GetRecipesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecipesRequest.swift; sourceTree = "<group>"; };
+		DD568BB1259C3E73009ACD5A /* GetRecipesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecipesResponse.swift; sourceTree = "<group>"; };
+		DD568BB5259C3E9E009ACD5A /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
+		DD568BC0259C8195009ACD5A /* GetRecipeInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecipeInfoResponse.swift; sourceTree = "<group>"; };
+		DD568BC7259C88EB009ACD5A /* SearchRecipesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipesResponse.swift; sourceTree = "<group>"; };
+		DD568BCD259C88FB009ACD5A /* SearchRecipesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipesRequest.swift; sourceTree = "<group>"; };
+		DD568BD1259C8908009ACD5A /* GetRecipeInfoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecipeInfoRequest.swift; sourceTree = "<group>"; };
+		DD568BDC259C934F009ACD5A /* DtoApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DtoApiError.swift; sourceTree = "<group>"; };
+		E0FB5CD48EDE21F1C2FC0B14 /* Pods-NutriApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutriApp.debug.xcconfig"; path = "Target Support Files/Pods-NutriApp/Pods-NutriApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7553F0D574326275DE4483F2 /* Pods_NutriApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,26 +83,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DD568B6C259C3489009ACD5A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				BE8E581ADC8ACF53540F36F3 /* Pods_NutriAppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F37991B1DD6757C3D2D6223 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1B05BC34A1A992BE634CC059 /* Pods_NutriApp.framework */,
+				BB626795BC3CF678ACAB1D2B /* Pods_NutriAppTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DD568B45259C3487009ACD5A = {
 			isa = PBXGroup;
 			children = (
 				DD568B50259C3487009ACD5A /* NutriApp */,
 				DD568B67259C3489009ACD5A /* NutriAppTests */,
-				DD568B72259C3489009ACD5A /* NutriAppUITests */,
 				DD568B4F259C3487009ACD5A /* Products */,
+				F2FF5B259292E7CEAA05CB98 /* Pods */,
+				3F37991B1DD6757C3D2D6223 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,7 +115,6 @@
 			children = (
 				DD568B4E259C3487009ACD5A /* NutriApp.app */,
 				DD568B64259C3489009ACD5A /* NutriAppTests.xctest */,
-				DD568B6F259C3489009ACD5A /* NutriAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,8 +122,7 @@
 		DD568B50259C3487009ACD5A /* NutriApp */ = {
 			isa = PBXGroup;
 			children = (
-				DD568B51259C3487009ACD5A /* AppDelegate.swift */,
-				DD568B53259C3487009ACD5A /* SceneDelegate.swift */,
+				DD568B86259C34B1009ACD5A /* Common */,
 				DD568B55259C3487009ACD5A /* ViewController.swift */,
 				DD568B57259C3487009ACD5A /* Main.storyboard */,
 				DD568B5A259C3489009ACD5A /* Assets.xcassets */,
@@ -119,13 +141,83 @@
 			path = NutriAppTests;
 			sourceTree = "<group>";
 		};
-		DD568B72259C3489009ACD5A /* NutriAppUITests */ = {
+		DD568B86259C34B1009ACD5A /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				DD568B73259C3489009ACD5A /* NutriAppUITests.swift */,
-				DD568B75259C3489009ACD5A /* Info.plist */,
+				DD568B8E259C3866009ACD5A /* Api */,
+				DD568B87259C34B8009ACD5A /* App */,
 			);
-			path = NutriAppUITests;
+			path = Common;
+			sourceTree = "<group>";
+		};
+		DD568B87259C34B8009ACD5A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				DD568B51259C3487009ACD5A /* AppDelegate.swift */,
+				DD568B53259C3487009ACD5A /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		DD568B8E259C3866009ACD5A /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				DD568BAB259C3E40009ACD5A /* Requests */,
+				DD568B8F259C3882009ACD5A /* ApiClient.swift */,
+				DD568B95259C3896009ACD5A /* ApiRequest.swift */,
+				DD568B99259C38B3009ACD5A /* BaseResponse.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		DD568BAB259C3E40009ACD5A /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				DD568BC6259C88CF009ACD5A /* SearchRecipes */,
+				DD568BBF259C8183009ACD5A /* GetRecipeInfo */,
+				DD568BAC259C3E47009ACD5A /* GetRecipes */,
+				DD568BB5259C3E9E009ACD5A /* Endpoints.swift */,
+				DD568BDC259C934F009ACD5A /* DtoApiError.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		DD568BAC259C3E47009ACD5A /* GetRecipes */ = {
+			isa = PBXGroup;
+			children = (
+				DD568BAD259C3E5D009ACD5A /* GetRecipesRequest.swift */,
+				DD568BB1259C3E73009ACD5A /* GetRecipesResponse.swift */,
+			);
+			path = GetRecipes;
+			sourceTree = "<group>";
+		};
+		DD568BBF259C8183009ACD5A /* GetRecipeInfo */ = {
+			isa = PBXGroup;
+			children = (
+				DD568BC0259C8195009ACD5A /* GetRecipeInfoResponse.swift */,
+				DD568BD1259C8908009ACD5A /* GetRecipeInfoRequest.swift */,
+			);
+			path = GetRecipeInfo;
+			sourceTree = "<group>";
+		};
+		DD568BC6259C88CF009ACD5A /* SearchRecipes */ = {
+			isa = PBXGroup;
+			children = (
+				DD568BC7259C88EB009ACD5A /* SearchRecipesResponse.swift */,
+				DD568BCD259C88FB009ACD5A /* SearchRecipesRequest.swift */,
+			);
+			path = SearchRecipes;
+			sourceTree = "<group>";
+		};
+		F2FF5B259292E7CEAA05CB98 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E0FB5CD48EDE21F1C2FC0B14 /* Pods-NutriApp.debug.xcconfig */,
+				1C863EE2CD2F3ECFE4CC1DF0 /* Pods-NutriApp.release.xcconfig */,
+				3D79AA4CA0B8FD136F3E6BCA /* Pods-NutriAppTests.debug.xcconfig */,
+				05F2B55982ED3782E2B92649 /* Pods-NutriAppTests.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,9 +227,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD568B78259C3489009ACD5A /* Build configuration list for PBXNativeTarget "NutriApp" */;
 			buildPhases = (
+				F10BC4D9EE3CB4D701869878 /* [CP] Check Pods Manifest.lock */,
 				DD568B4A259C3487009ACD5A /* Sources */,
 				DD568B4B259C3487009ACD5A /* Frameworks */,
 				DD568B4C259C3487009ACD5A /* Resources */,
+				9AC92A2477EB02E984B425A3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +246,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD568B7B259C3489009ACD5A /* Build configuration list for PBXNativeTarget "NutriAppTests" */;
 			buildPhases = (
+				E8B47BE3C50AA64EEAB2D514 /* [CP] Check Pods Manifest.lock */,
 				DD568B60259C3489009ACD5A /* Sources */,
 				DD568B61259C3489009ACD5A /* Frameworks */,
 				DD568B62259C3489009ACD5A /* Resources */,
@@ -166,24 +261,6 @@
 			productReference = DD568B64259C3489009ACD5A /* NutriAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		DD568B6E259C3489009ACD5A /* NutriAppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DD568B7E259C3489009ACD5A /* Build configuration list for PBXNativeTarget "NutriAppUITests" */;
-			buildPhases = (
-				DD568B6B259C3489009ACD5A /* Sources */,
-				DD568B6C259C3489009ACD5A /* Frameworks */,
-				DD568B6D259C3489009ACD5A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DD568B71259C3489009ACD5A /* PBXTargetDependency */,
-			);
-			name = NutriAppUITests;
-			productName = NutriAppUITests;
-			productReference = DD568B6F259C3489009ACD5A /* NutriAppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -197,10 +274,6 @@
 						CreatedOnToolsVersion = 12.2;
 					};
 					DD568B63259C3489009ACD5A = {
-						CreatedOnToolsVersion = 12.2;
-						TestTargetID = DD568B4D259C3487009ACD5A;
-					};
-					DD568B6E259C3489009ACD5A = {
 						CreatedOnToolsVersion = 12.2;
 						TestTargetID = DD568B4D259C3487009ACD5A;
 					};
@@ -221,7 +294,6 @@
 			targets = (
 				DD568B4D259C3487009ACD5A /* NutriApp */,
 				DD568B63259C3489009ACD5A /* NutriAppTests */,
-				DD568B6E259C3489009ACD5A /* NutriAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -244,14 +316,71 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DD568B6D259C3489009ACD5A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9AC92A2477EB02E984B425A3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NutriApp/Pods-NutriApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NutriApp/Pods-NutriApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NutriApp/Pods-NutriApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
-/* End PBXResourcesBuildPhase section */
+		E8B47BE3C50AA64EEAB2D514 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NutriAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F10BC4D9EE3CB4D701869878 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NutriApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DD568B4A259C3487009ACD5A /* Sources */ = {
@@ -259,8 +388,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD568B56259C3487009ACD5A /* ViewController.swift in Sources */,
+				DD568BDD259C934F009ACD5A /* DtoApiError.swift in Sources */,
+				DD568BD2259C8908009ACD5A /* GetRecipeInfoRequest.swift in Sources */,
+				DD568BC8259C88EB009ACD5A /* SearchRecipesResponse.swift in Sources */,
 				DD568B52259C3487009ACD5A /* AppDelegate.swift in Sources */,
+				DD568BCE259C88FB009ACD5A /* SearchRecipesRequest.swift in Sources */,
 				DD568B54259C3487009ACD5A /* SceneDelegate.swift in Sources */,
+				DD568BC1259C8195009ACD5A /* GetRecipeInfoResponse.swift in Sources */,
+				DD568B9A259C38B3009ACD5A /* BaseResponse.swift in Sources */,
+				DD568B96259C3896009ACD5A /* ApiRequest.swift in Sources */,
+				DD568BB6259C3E9E009ACD5A /* Endpoints.swift in Sources */,
+				DD568BB2259C3E73009ACD5A /* GetRecipesResponse.swift in Sources */,
+				DD568BAE259C3E5D009ACD5A /* GetRecipesRequest.swift in Sources */,
+				DD568B90259C3882009ACD5A /* ApiClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,14 +412,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DD568B6B259C3489009ACD5A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DD568B74259C3489009ACD5A /* NutriAppUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -287,11 +419,6 @@
 			isa = PBXTargetDependency;
 			target = DD568B4D259C3487009ACD5A /* NutriApp */;
 			targetProxy = DD568B65259C3489009ACD5A /* PBXContainerItemProxy */;
-		};
-		DD568B71259C3489009ACD5A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DD568B4D259C3487009ACD5A /* NutriApp */;
-			targetProxy = DD568B70259C3489009ACD5A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -433,6 +560,7 @@
 		};
 		DD568B79259C3489009ACD5A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0FB5CD48EDE21F1C2FC0B14 /* Pods-NutriApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -451,6 +579,7 @@
 		};
 		DD568B7A259C3489009ACD5A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C863EE2CD2F3ECFE4CC1DF0 /* Pods-NutriApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -469,6 +598,7 @@
 		};
 		DD568B7C259C3489009ACD5A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D79AA4CA0B8FD136F3E6BCA /* Pods-NutriAppTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -490,6 +620,7 @@
 		};
 		DD568B7D259C3489009ACD5A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05F2B55982ED3782E2B92649 /* Pods-NutriAppTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -506,44 +637,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NutriApp.app/NutriApp";
-			};
-			name = Release;
-		};
-		DD568B7F259C3489009ACD5A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = NutriAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = fahim.NutriAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = NutriApp;
-			};
-			name = Debug;
-		};
-		DD568B80259C3489009ACD5A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = NutriAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = fahim.NutriAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = NutriApp;
 			};
 			name = Release;
 		};
@@ -573,15 +666,6 @@
 			buildConfigurations = (
 				DD568B7C259C3489009ACD5A /* Debug */,
 				DD568B7D259C3489009ACD5A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DD568B7E259C3489009ACD5A /* Build configuration list for PBXNativeTarget "NutriAppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DD568B7F259C3489009ACD5A /* Debug */,
-				DD568B80259C3489009ACD5A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
