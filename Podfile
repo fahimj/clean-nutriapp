@@ -8,11 +8,18 @@ target 'NutriApp' do
   # Pods for NutriApp
   pod 'Alamofire'
   pod 'RxSwift'
+  pod 'RxRealm'
   pod 'AlamofireImage'
+  pod 'Realm'
+  pod 'RealmSwift'
+  pod 'SwiftLint'
+  pod 'Swinject', '2.6.0' 
+  pod 'SwinjectStoryboard' 
 
   target 'NutriAppTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'RxTest'
   end
 
 end

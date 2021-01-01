@@ -48,7 +48,6 @@ struct DtoRecipeInfo : Codable {
     let weightWatcherSmartPoints : Int?
     let winePairing : DtoWinePairing?
 
-
     enum CodingKeys: String, CodingKey {
         case aggregateLikes = "aggregateLikes"
         case analyzedInstructions = "analyzedInstructions"
@@ -251,7 +250,7 @@ struct DtoMeasure : Codable {
         case us
     }
     init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
+        _ = try decoder.container(keyedBy: CodingKeys.self)
         metric = try DtoMetric(from: decoder)
         us = try DtoMetric(from: decoder)
     }

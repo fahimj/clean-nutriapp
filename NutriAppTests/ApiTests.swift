@@ -8,7 +8,8 @@
 import XCTest
 @testable import NutriApp
 
-class NutriAppTests: XCTestCase {
+class ApiAppTests: XCTestCase {
+    let apiClient = ApiClient()
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -21,11 +22,12 @@ class NutriAppTests: XCTestCase {
     func testSearchRecipes() {
         let expectation = self.expectation(description: "testSearchRecipes")
 
-        let request = Endpoints.SearchRecipesRequest(query: "")
-        ApiClient.shared.send(request, completion: {response in
+        let request = Endpoints.SearchRecipesRequest(query: "meat", offset: 5, number: 25)
+        apiClient.send(request, completion: {response in
             print(response)
 
-            XCTAssert(response.number != nil)
+            XCTAssert(response.number == 25)
+            XCTAssert(response.offset == 5)
             expectation.fulfill()
 
         }) {error in
@@ -42,7 +44,7 @@ class NutriAppTests: XCTestCase {
         let expectation = self.expectation(description: "testGetRecipe")
 
         let request = Endpoints.GetRecipeInfoRequest(id: 715439)
-        ApiClient.shared.send(request, completion: {response in
+        apiClient.send(request, completion: {response in
             print(response)
 
             XCTAssert(response.id != nil)

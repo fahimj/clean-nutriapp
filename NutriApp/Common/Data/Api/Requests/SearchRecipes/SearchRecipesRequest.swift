@@ -1,5 +1,5 @@
 //
-//  GetRecipesRequest.swift
+//  SearchRecipesRequest.swift
 //  NutriApp
 //
 //  Created by Fahim Jatmiko on 30/12/20.
@@ -10,15 +10,17 @@ import Alamofire
 
 extension Endpoints
 {
-    struct ListBlockedUserRequest : ApiRequest
+    struct SearchRecipesRequest : ApiRequest
     {
-        public typealias Response = BaseResponse<ListBlockedUserResponse>
-        let page:Int
-        let perPage:Int
+        public typealias Response = DtoSearchRecipesResponse
+        let query:String
+        let offset:Int
+        let number:Int
         
-        init(page:Int = 1, perPage:Int = 10 ) {
-            self.page = page
-            self.perPage = perPage
+        init(query:String, offset:Int = 0, number:Int = 25) {
+            self.offset = offset
+            self.number = number
+            self.query = query
         }
         
         var baseUrlString: String {
@@ -30,13 +32,14 @@ extension Endpoints
         }
         
         var path: String {
-            return "v1/users/blocked"
+            return "recipes/complexSearch"
         }
         
         var parameters: [String : Any] {
-            return [ //page=1&per_page=25
-                "page" : page,
-//                "per_page" : perPage
+            return [
+                "query" : query,
+                "offset" : offset,
+                "number" : number
             ]
         }
         
@@ -49,7 +52,7 @@ extension Endpoints
         }
         
         var encoding: ParameterEncoding? {
-            return URLEncoding.default
+            return URLEncoding.queryString
         }
         
     }

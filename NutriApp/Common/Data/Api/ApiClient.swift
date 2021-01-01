@@ -56,14 +56,14 @@ class ByspassSSLTrustPolicyManager: ServerTrustManager {
 
 class ApiClient
 {
-    static let shared = ApiClient()
+//    static let shared = ApiClient()
     var session:Session!
     private var retriedRequests: [String: Int] = [:]
     
     var apiKey: String = "41a25a4004924fbe98c7a7f6390d3547"
    
     
-    private init() {
+    init() {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 120
         configuration.urlCredentialStorage = nil
@@ -99,7 +99,6 @@ class ApiClient
             .responseDecodable { (response: DataResponse<T.Response, AFError>) in
                 print(response.response?.statusCode ?? "")
                 print(String(decoding: response.data ?? "no response data".data(using: .ascii)!, as: UTF8.self))
-                print(String(decoding: response.data!, as: UTF8.self))
                 guard let statusCode = response.response?.statusCode else {
                     errorHandler(ApiError.otherFailure(errorMessage: response.value.debugDescription))
                     return
@@ -157,9 +156,7 @@ extension URLRequest {
 extension ApiClient : RequestAdapter {
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         guard var urlComponents = URLComponents(url: urlRequest.url!, resolvingAgainstBaseURL: false) else {return}
-        urlComponents.queryItems = [
-            URLQueryItem(name: "apiKey", value: apiKey)
-        ]
+        urlComponents.queryItems?.append(URLQueryItem(name: "apiKey", value: apiKey))
         var urlRequest = urlRequest
         urlRequest.url = urlComponents.url
         completion(.success(urlRequest))
