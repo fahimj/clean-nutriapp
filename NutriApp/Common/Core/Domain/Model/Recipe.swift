@@ -17,5 +17,5 @@ struct Recipe {
     let sourceUrl : String?
     let summary : String?
     let title : String
-    let isFavorite : Bool
+    var isFavorite : Bool
 }

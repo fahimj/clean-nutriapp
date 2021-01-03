@@ -17,8 +17,8 @@ protocol LocaleDataSourceProtocol: class {
     //generic object
     func getObjects<T: Object>(_ type: T.Type, predicate: String?) -> Observable<[T]>
     func getObject<T: Object, KeyType>(_ type: T.Type, key: KeyType) -> Observable<T?>
-    func add<T: Object>(_ data: T, update: Bool) -> Observable<Void>
-    func add<T: Object>(_ data: [T], update: Bool) -> Observable<Void>
+    func add<T: Object>(_ data: T, update: Bool) -> Observable<T>
+    func add<T: Object>(_ data: [T], update: Bool) -> Observable<[T]>
     func delete<T: Object>(_ data: T) -> Observable<Void>
     func delete<T: Object>(_ data: [T]) -> Observable<Void>
     func clearAllData() -> Observable<Void>
@@ -50,17 +50,17 @@ final class LocaleDataSource : LocaleDataSourceProtocol {
         return LocaleDataSource(realm: realmDatabase!)
     }
     
-    func add<T: Object>(_ data: T, update: Bool = true) -> Observable<Void> {
-        return add([data])
+    func add<T: Object>(_ data: T, update: Bool = true) -> Observable<T> {
+        return add([data]).map{$0.first!}
     }
     
-    func add<T: Object>(_ data: [T], update: Bool = true) -> Observable<Void> {
-        return Observable<Void>.create { observer in
+    func add<T: Object>(_ data: [T], update: Bool = true) -> Observable<[T]> {
+        return Observable<[T]>.create { observer in
             if let realm = self.realm {
                 try? realm.write {
                     realm.add(data, update: .modified)
                 }
-                observer.onNext(())
+                observer.onNext(data)
                 observer.onCompleted()
             } else {
                 observer.onError(DatabaseError.invalidInstance)

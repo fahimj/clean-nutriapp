@@ -28,6 +28,5 @@ class HomeUseCase: HomeUseCaseProtocol {
     func syncMoreRecipes(query: String, offset:Int) -> Observable<Void> {
         return repository.syncMoreRecipes(query: query, offset: offset, perPage: 25)
     }
-    
 }
 

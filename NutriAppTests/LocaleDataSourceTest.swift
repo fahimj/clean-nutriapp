@@ -35,8 +35,8 @@ class LocaleDataSourceTest: XCTestCase {
         
         localeDataSource
             .clearAllData()
-            .flatMap{ localeDataSource.add(data) }
-            .flatMap{ localeDataSource.getObjects(RecipeRLM.self) }
+            .flatMap{localeDataSource.add(data) }
+            .flatMap{ _ in localeDataSource.getObjects(RecipeRLM.self) }
             .subscribe(onNext: {list in
                 XCTAssert(list.count > 0)
                 let object = list.first!
@@ -74,7 +74,7 @@ class LocaleDataSourceTest: XCTestCase {
         localeDataSource
             .clearAllData()
             .flatMap{ localeDataSource.add(data) }
-            .flatMap{ localeDataSource.getRecipes(query: "item2")}
+            .flatMap{ _ in localeDataSource.getRecipes(query: "item2")}
             .subscribe(onNext: {list in
                 XCTAssert(list.count == 1)
                 let object = list.first!
@@ -105,7 +105,7 @@ class LocaleDataSourceTest: XCTestCase {
         localeDataSource
             .clearAllData()
             .flatMap{ localeDataSource.add(data) }
-            .flatMap{ localeDataSource.getObject(RecipeRLM.self, key: 1)}
+            .flatMap{ _ in localeDataSource.getObject(RecipeRLM.self, key: 1)}
             .subscribe(onNext: {object in
                 XCTAssert(object?.id == 1)
                 XCTAssert(object?.title == "testing recipe")

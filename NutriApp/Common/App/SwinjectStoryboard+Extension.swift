@@ -31,7 +31,7 @@ extension SwinjectStoryboard {
     
     //Home
     defaultContainer.register(HomeRouterProtocol.self) { _ in
-        DummyHomeRouter()
+        HomeRouter()
     }
     defaultContainer.register(HomeUseCaseProtocol.self) { resolver in
         let repo = resolver.resolve(RecipeRepositoryProtocol.self)!
@@ -45,6 +45,46 @@ extension SwinjectStoryboard {
 
     defaultContainer.storyboardInitCompleted(HomeViewController.self) { resolver, controller in
         controller.homePresenter = resolver.resolve(HomePresenter.self)
+        defaultContainer.register(HomeViewController.self) { _ in
+            return controller
+        }
     }
+    
+    //Detail
+    defaultContainer.register(RecipeDetailsUseCaseProtocol.self) { resolver in
+        let repo = resolver.resolve(RecipeRepositoryProtocol.self)!
+        let useCase = RecipeDetailsUseCase(repository: repo)
+        return useCase
+    }
+
+    defaultContainer.register(RecipeDetailsPresenter.self) { (resolver, selectedRecipe:Recipe) in
+        let useCase = resolver.resolve(RecipeDetailsUseCaseProtocol.self)!
+        return RecipeDetailsPresenter(recipe: selectedRecipe, useCase: useCase)
+    }
+    
+    //Favorite
+    defaultContainer.register(FavoriteRouterProtocol.self) { _ in
+        FavoriteRouter()
+    }
+    defaultContainer.register(FavoriteUseCaseProtocol.self) { resolver in
+        let repo = resolver.resolve(RecipeRepositoryProtocol.self)!
+        return FavoriteUseCase(repository: repo)
+    }
+    defaultContainer.register(FavoritePresenter.self) { resolver in
+        let homeUseCase = resolver.resolve(FavoriteUseCaseProtocol.self)!
+        let homeRouter = resolver.resolve(FavoriteRouterProtocol.self)!
+        return FavoritePresenter(homeUseCase: homeUseCase, homeRouter: homeRouter)
+    }
+
+    defaultContainer.storyboardInitCompleted(FavoriteViewController.self) { resolver, controller in
+        controller.favoritePresenter = resolver.resolve(FavoritePresenter.self)
+        defaultContainer.register(FavoriteViewController.self) { _ in
+            return controller
+        }
+    }
+
+//    defaultContainer.storyboardInitCompleted(RecipeDetailsViewController.self) { resolver, controller in
+//        controller.homePresenter = resolver.resolve(HomePresenter.self)
+//    }
   }
 }

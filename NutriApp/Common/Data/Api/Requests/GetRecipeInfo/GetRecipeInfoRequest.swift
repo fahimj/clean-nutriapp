@@ -46,7 +46,7 @@ extension Endpoints
         }
         
         var encoding: ParameterEncoding? {
-            return URLEncoding.default
+            return URLEncoding.queryString
         }
         
     }

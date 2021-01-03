@@ -91,8 +91,7 @@ class ApiClient
     @discardableResult
     public func send<T: ApiRequest>(_ request: T, completion: @escaping (T.Response) -> Void, errorHandler: @escaping (ApiError) -> Void) -> DataRequest {
         let urlRequest = try! request.asURLRequest()
-        urlRequest.log()
-        
+
         let request = session.request(urlRequest)
             .debugLog()
             .validate()
@@ -144,18 +143,12 @@ extension Data {
     }
 }
 
-extension URLRequest {
-    func log() {
-        print("\(httpMethod ?? "") \(self)")
-        print("BODY \n \(httpBody?.toString())")
-        print("HEADERS \n \(allHTTPHeaderFields)")
-    }
-}
-
-
 extension ApiClient : RequestAdapter {
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         guard var urlComponents = URLComponents(url: urlRequest.url!, resolvingAgainstBaseURL: false) else {return}
+        if urlComponents.queryItems == nil {
+            urlComponents.queryItems = []
+        }
         urlComponents.queryItems?.append(URLQueryItem(name: "apiKey", value: apiKey))
         var urlRequest = urlRequest
         urlRequest.url = urlComponents.url
@@ -183,7 +176,7 @@ extension ApiClient : RequestRetrier {
 extension Request {
     public func debugLog() -> Self {
         #if DEBUG
-        debugPrint(self)
+        cURLDescription{print($0)}
         #endif
         return self
     }

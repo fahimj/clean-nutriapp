@@ -49,6 +49,27 @@ class RepoTest: XCTestCase {
         
         waitForExpectations(timeout: 5000, handler: nil)
     }
+    
+    func testGetFavoriteRecipes() {
+        let expectation = self.expectation(description: "testGetFavoriteRecipes")
+
+        localeDataSource
+            .clearAllData()
+            .flatMap{self.repo.syncMoreRecipes(query: "", offset: 0, perPage: 25)}
+            .flatMap{self.repo.syncMoreRecipes(query: "", offset: 25, perPage: 25)}
+            .flatMap{self.repo.getFavoriteRecipes()}
+            .subscribe(onNext: {recipes in
+                XCTAssert(recipes.count == 0)
+                expectation.fulfill()
+            }, onError: {error in
+                XCTAssert(false)
+                expectation.fulfill()
+            })
+            .disposed(by: disposeBag)
+        
+        
+        waitForExpectations(timeout: 5000, handler: nil)
+    }
 
     func testGetSameData() {
         let expectation = self.expectation(description: "testGetByIdRealm")

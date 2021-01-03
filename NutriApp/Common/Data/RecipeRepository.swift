@@ -10,9 +10,11 @@ import RxSwift
 
 protocol RecipeRepositoryProtocol {
     func getRecipes(query:String) -> Observable<[Recipe]>
+    func getFavoriteRecipes() -> Observable<[Recipe]>
+    func getRecipe(id:Int) -> Observable<Recipe?>
     func syncMoreRecipes(query:String, offset:Int, perPage:Int) -> Observable<Void>
     func getRecipeDetails(id:Int) -> Observable<Recipe>
-    func editRecipe(recipe:Recipe) -> Observable<Void>
+    func editRecipe(recipe:Recipe) -> Observable<Recipe>
 }
 
 final class RecipeRepository  {
@@ -23,7 +25,7 @@ final class RecipeRepository  {
     
     let disposeBag = DisposeBag()
     
-    private init(locale: LocaleDataSourceProtocol, remote: RemoteDataSourceProtocol) {
+     init(locale: LocaleDataSourceProtocol, remote: RemoteDataSourceProtocol) {
         self.locale = locale
         self.remote = remote
     }
@@ -34,19 +36,41 @@ final class RecipeRepository  {
 }
 
 extension RecipeRepository : RecipeRepositoryProtocol {
+    func getFavoriteRecipes() -> Observable<[Recipe]> {
+        return locale.getObjects(RecipeRLM.self, predicate: "isFavorite = true")
+            .map{recipes in
+                recipes.map{$0.mapToDomain()}
+            }
+    }
+    
     func getRecipeDetails(id: Int) -> Observable<Recipe> {
         let recipeDetailsStream = remote.getRecipeDetails(id: id)
             .map{$0.mapToRecipe()}
-            .share()
         
-       return recipeDetailsStream
-//            .flatMap{[weak self] recipe in
-//                let recipeRlm = RecipeRLM.mapToRealmModel(recipe: recipe)
-//            }
+        let recipeLocalStream = locale.getObject(RecipeRLM.self, key: id)
+        
+        // get recipe details, then save to local
+        return Observable.combineLatest(recipeDetailsStream, recipeLocalStream)
+            .map{recipeDetails, recipeLocal -> RecipeRLM in
+                var editedRecipeDetails = recipeDetails
+                editedRecipeDetails.isFavorite = recipeLocal?.isFavorite ?? false
+                return RecipeRLM.mapToRealmModel(recipe: editedRecipeDetails)
+            }
+            .flatMap{[weak self] recipeDetails -> Observable<RecipeRLM>  in
+                return self!.locale.add(recipeDetails, update: true)
+            }
+            .map{$0.mapToDomain()}
     }
     
     func getRecipes(query:String) -> Observable<[Recipe]> {
         return locale.getRecipes(query: query)
+            .map{recipes in
+                recipes.map{$0.mapToDomain()}
+            }
+    }
+    
+    func getRecipe(id:Int) -> Observable<Recipe?> {
+        return locale.getObject(RecipeRLM.self, key: id)
             .map{recipes in
                 recipes.map{$0.mapToDomain()}
             }
@@ -58,7 +82,7 @@ extension RecipeRepository : RecipeRepositoryProtocol {
         
         
         return Observable.zip(favoritedRecipesStream, getRecipesStream)
-            .flatMap{ [weak self] favoritedRecipes, recipesResponse -> Observable<Void> in
+            .flatMap{ [weak self] favoritedRecipes, recipesResponse -> Observable<[RecipeRLM]> in
                 //keep isFavorite value for each model
                 let recipeList = recipesResponse.mapToRecipeList()
                 let models = recipeList.map{RecipeRLM.mapToRealmModel(recipe: $0)}
@@ -69,12 +93,14 @@ extension RecipeRepository : RecipeRepositoryProtocol {
                 
                 return self!.locale.add(models, update: true)
             }
+            .map{_ in return ()}
     }
     
-    func editRecipe(recipe:Recipe) -> Observable<Void> {
-        return locale.getObject(RecipeRLM.self, key: recipe.id)
-            .map{recipeRlm -> RecipeRLM in
-                guard let recipeRlm = recipeRlm else {throw DatabaseError.requestFailed}
+    func editRecipe(recipe:Recipe) -> Observable<Recipe> {
+        Observable.just(recipe)
+            .map{recipe -> RecipeRLM in
+//                guard let recipeRlm = recipeRlm else {throw DatabaseError.requestFailed}
+                let recipeRlm = RecipeRLM.mapToRealmModel(recipe: recipe)
                 recipeRlm.isFavorite = recipe.isFavorite
                 recipeRlm.title = recipe.title
                 recipeRlm.image = recipe.image ?? ""
@@ -89,9 +115,10 @@ extension RecipeRepository : RecipeRepositoryProtocol {
                 
                 return recipeRlm
             }
-            .flatMap{[weak self] recipeRlm -> Observable<Void> in
+            .flatMap{[weak self] recipeRlm -> Observable<RecipeRLM> in
                 return self!.locale.add(recipeRlm, update: true)
             }
+            .map{$0.mapToDomain()}
             
     }
 }
