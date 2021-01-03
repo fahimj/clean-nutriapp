@@ -80,7 +80,7 @@ final class RecipeDetailsPresenter {
             .bind(to: ingredients).disposed(by: disposeBag)
         
         isFavorite
-            .skip(1)
+            .skip(2)
             .flatMap{[weak self] value -> Observable<Recipe> in
                 if (value) {
                     return self!.useCase.addToFavorites(recipe: self!.recipe)

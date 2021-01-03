@@ -60,7 +60,7 @@ class ApiClient
     var session:Session!
     private var retriedRequests: [String: Int] = [:]
     
-    var apiKey: String = "41a25a4004924fbe98c7a7f6390d3547"
+    var apiKey: String = "fc46011919fc4650b727c7a199e68e04" //"41a25a4004924fbe98c7a7f6390d3547"
    
     
     init() {

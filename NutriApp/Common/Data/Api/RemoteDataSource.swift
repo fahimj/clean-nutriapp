@@ -28,15 +28,11 @@ final class RemoteDataSource: RemoteDataSourceProtocol {
         let getRecipeRequest = Endpoints.SearchRecipesRequest(query:"", offset:offset, number:perPage)
         return apiClient
             .sendAsObservable(getRecipeRequest)
-//            .map{result -> [Recipe] in
-//                result.mapToRecipeList()
-//            }
     }
 
     func getRecipeDetails(id: Int) -> Observable<DtoRecipeInfo> {
         let getRecipeDetailsRequest = Endpoints.GetRecipeInfoRequest(id: id)
         return apiClient
             .sendAsObservable(getRecipeDetailsRequest)
-//            .map{$0.mapToRecipe()}
     }
 }

@@ -19,6 +19,7 @@ class HomeViewController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
         homePresenter.loadTrigger.accept(())
+        homePresenter.loadMoreTrigger.accept(())
         homePresenter.recipes.asDriver().drive(onNext: { [weak self] _ in
             self?.collectionView.reloadData()
         }).disposed(by: disposeBag)
