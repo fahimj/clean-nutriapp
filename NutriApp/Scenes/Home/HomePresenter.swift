@@ -11,11 +11,12 @@ import RxCocoa
 
 final class HomePresenter {
     let selection: PublishRelay<Int> = PublishRelay<Int>()
-    let loadTrigger: PublishRelay<Void> = PublishRelay<Void>()
-    let loadMoreTrigger: PublishRelay<Void> = PublishRelay<Void>()
+    let loadTrigger: PublishRelay<String> = PublishRelay<String>()
+    let loadMoreTrigger: PublishRelay<String> = PublishRelay<String>()
     
     let recipes: BehaviorRelay<[Recipe]> = BehaviorRelay<[Recipe]>(value: [])
     let isLoading: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    let searchQuery: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
     
     private let disposeBag = DisposeBag()
     private let homeUseCase: HomeUseCaseProtocol
@@ -29,28 +30,31 @@ final class HomePresenter {
     }
     
     private func setupRx() {
+        searchQuery.bind(to: loadTrigger).disposed(by: disposeBag)
+        searchQuery.bind(to: loadMoreTrigger).disposed(by: disposeBag)
+        
         loadTrigger
-            .flatMap{ [weak self] _ -> Observable<[Recipe]> in
+            .withLatestFrom(searchQuery)
+            .flatMap{ [weak self] query -> Observable<[Recipe]> in
                 guard let self = self else {return Observable.just([])}
-                return self.homeUseCase.getRecipes(query: self.query, offset: 0)
+                return self.homeUseCase.getRecipes(query: query, offset: 0)
             }
+            .do(onNext:{print("number of recipes: \($0.count)")})
             .catchErrorJustReturn([])
             .bind(to: recipes)
             .disposed(by: disposeBag)
         
         loadMoreTrigger
-            .withLatestFrom(recipes)
-            .flatMap{ [weak self] recipes  -> Observable<Void> in
+            .withLatestFrom(searchQuery)
+            .withLatestFrom(recipes) {($0,$1)}
+            .flatMap{ [weak self] input -> Observable<Void> in
                 guard let self = self else {return Observable.just(())}
+                self.query = input.0
                 self.isLoading.accept(true)
-                return self.homeUseCase.syncMoreRecipes(query: self.query, offset: recipes.count)
+                return self.homeUseCase.syncMoreRecipes(query: input.0, offset: input.1.count)
             }
-            .subscribe(onNext: { [weak self] in
-                print("load more")
-                self?.isLoading.accept(false)
-            }, onError: {error in
-                
-            })
+            .map{[weak self] in self!.query}
+            .bind(to: loadTrigger)
             .disposed(by: disposeBag)
         
         selection

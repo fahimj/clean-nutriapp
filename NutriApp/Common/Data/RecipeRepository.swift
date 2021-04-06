@@ -51,8 +51,8 @@ extension RecipeRepository : RecipeRepositoryProtocol {
         
         // get recipe details, then save to local
         return Observable.combineLatest(recipeDetailsStream, recipeLocalStream)
-            .map{recipeDetails, recipeLocal -> RecipeRLM in
-                var editedRecipeDetails = recipeDetails
+            .map{recipeRemote, recipeLocal -> RecipeRLM in
+                var editedRecipeDetails = recipeRemote
                 editedRecipeDetails.isFavorite = recipeLocal?.isFavorite ?? false
                 return RecipeRLM.mapToRealmModel(recipe: editedRecipeDetails)
             }
@@ -79,6 +79,7 @@ extension RecipeRepository : RecipeRepositoryProtocol {
     func syncMoreRecipes(query:String, offset:Int, perPage:Int) -> Observable<Void> {
         let favoritedRecipesStream = locale.getFavoritedRecipes()
         let getRecipesStream = remote.getRecipes(query: query, offset: offset, perPage: perPage)
+            .catchErrorJustReturn(DtoSearchRecipesResponse())
         
         
         return Observable.zip(favoritedRecipesStream, getRecipesStream)

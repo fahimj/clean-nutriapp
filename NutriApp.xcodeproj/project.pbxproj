@@ -164,7 +164,7 @@
 		DD568B50259C3487009ACD5A /* NutriApp */ = {
 			isa = PBXGroup;
 			children = (
-				DD568BE0259CA4EB009ACD5A /* Modules */,
+				DD568BE0259CA4EB009ACD5A /* Scenes */,
 				DD568B86259C34B1009ACD5A /* Common */,
 				DD568B5A259C3489009ACD5A /* Assets.xcassets */,
 				DD568B5C259C3489009ACD5A /* LaunchScreen.storyboard */,
@@ -188,9 +188,9 @@
 		DD568B86259C34B1009ACD5A /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				DD568D27259F8514009ACD5A /* Utils */,
-				DD568BE3259CA547009ACD5A /* Core */,
+				DD568BE4259CA562009ACD5A /* Domain */,
 				DD568C1A259DAAE6009ACD5A /* Data */,
+				DD568D27259F8514009ACD5A /* Utils */,
 				DD568B87259C34B8009ACD5A /* App */,
 			);
 			path = Common;
@@ -206,26 +206,26 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		DD568B8E259C3866009ACD5A /* Api */ = {
+		DD568B8E259C3866009ACD5A /* Remote */ = {
 			isa = PBXGroup;
 			children = (
-				DD568BAB259C3E40009ACD5A /* Requests */,
+				DD568BAB259C3E40009ACD5A /* Endpoints */,
 				DD568B8F259C3882009ACD5A /* ApiClient.swift */,
 				DD568B95259C3896009ACD5A /* ApiRequest.swift */,
+				DD568BDC259C934F009ACD5A /* DtoApiError.swift */,
 				DD568C1C259DAB58009ACD5A /* RemoteDataSource.swift */,
 			);
-			path = Api;
+			path = Remote;
 			sourceTree = "<group>";
 		};
-		DD568BAB259C3E40009ACD5A /* Requests */ = {
+		DD568BAB259C3E40009ACD5A /* Endpoints */ = {
 			isa = PBXGroup;
 			children = (
 				DD568BC6259C88CF009ACD5A /* SearchRecipes */,
 				DD568BBF259C8183009ACD5A /* GetRecipeInfo */,
 				DD568BB5259C3E9E009ACD5A /* Endpoints.swift */,
-				DD568BDC259C934F009ACD5A /* DtoApiError.swift */,
 			);
-			path = Requests;
+			path = Endpoints;
 			sourceTree = "<group>";
 		};
 		DD568BBF259C8183009ACD5A /* GetRecipeInfo */ = {
@@ -247,7 +247,7 @@
 			path = SearchRecipes;
 			sourceTree = "<group>";
 		};
-		DD568BE0259CA4EB009ACD5A /* Modules */ = {
+		DD568BE0259CA4EB009ACD5A /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				DD568CC5259F0585009ACD5A /* Favorite */,
@@ -255,31 +255,24 @@
 				DD568CC3259F0575009ACD5A /* Home */,
 				DD568B57259C3487009ACD5A /* Main.storyboard */,
 			);
-			path = Modules;
-			sourceTree = "<group>";
-		};
-		DD568BE3259CA547009ACD5A /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				DD568BE4259CA562009ACD5A /* Domain */,
-			);
-			path = Core;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		DD568BE4259CA562009ACD5A /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				DD568BE9259D79B3009ACD5A /* Model */,
+				DD568BE9259D79B3009ACD5A /* Entity */,
+				DD93D09E25AAD027005D6428 /* Use Case */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
 		};
-		DD568BE9259D79B3009ACD5A /* Model */ = {
+		DD568BE9259D79B3009ACD5A /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				DD568BEE259D7AB1009ACD5A /* Recipe.swift */,
 			);
-			path = Model;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		DD568C19259DAAD1009ACD5A /* Locale */ = {
@@ -294,7 +287,7 @@
 		DD568C1A259DAAE6009ACD5A /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				DD568B8E259C3866009ACD5A /* Api */,
+				DD568B8E259C3866009ACD5A /* Remote */,
 				DD568C19259DAAD1009ACD5A /* Locale */,
 				DD568C8D259E2E85009ACD5A /* RecipeRepository.swift */,
 			);
@@ -314,7 +307,6 @@
 			children = (
 				DD568D3A259FEB6A009ACD5A /* HomeViewController.swift */,
 				DD568CC6259F32B5009ACD5A /* HomePresenter.swift */,
-				DD568BF6259D7EF1009ACD5A /* HomeUseCase.swift */,
 				DD568CD2259F53CE009ACD5A /* HomeRouter.swift */,
 				DD568D32259F85FC009ACD5A /* RecipeTableViewCell.swift */,
 				DD568D36259FEB4D009ACD5A /* RecipeCollectionViewCell.swift */,
@@ -327,7 +319,6 @@
 			children = (
 				DD568D5425A00F31009ACD5A /* RecipeDetailsViewController.swift */,
 				DD568D5825A01103009ACD5A /* RecipeDetailsPresenter.swift */,
-				DD568D5C25A0112D009ACD5A /* RecipeDetailsUseCase.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -336,7 +327,6 @@
 			isa = PBXGroup;
 			children = (
 				DD568D8225A0C02B009ACD5A /* FavoriteViewController.swift */,
-				DD568D7A25A0C009009ACD5A /* FavoriteUseCase.swift */,
 				DD568D7E25A0C018009ACD5A /* FavoritePresenter.swift */,
 				DD568D8625A0C165009ACD5A /* FavoriteRouter.swift */,
 			);
@@ -350,6 +340,16 @@
 				DD568D7625A0BA4F009ACD5A /* String+Html.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		DD93D09E25AAD027005D6428 /* Use Case */ = {
+			isa = PBXGroup;
+			children = (
+				DD568D7A25A0C009009ACD5A /* FavoriteUseCase.swift */,
+				DD568D5C25A0112D009ACD5A /* RecipeDetailsUseCase.swift */,
+				DD568BF6259D7EF1009ACD5A /* HomeUseCase.swift */,
+			);
+			path = "Use Case";
 			sourceTree = "<group>";
 		};
 		F2FF5B259292E7CEAA05CB98 /* Pods */ = {
@@ -764,7 +764,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = NutriApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -772,6 +773,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = fahim.NutriApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -783,7 +785,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = NutriApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -791,6 +794,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = fahim.NutriApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

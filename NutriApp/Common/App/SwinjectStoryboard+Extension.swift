@@ -82,9 +82,5 @@ extension SwinjectStoryboard {
             return controller
         }
     }
-
-//    defaultContainer.storyboardInitCompleted(RecipeDetailsViewController.self) { resolver, controller in
-//        controller.homePresenter = resolver.resolve(HomePresenter.self)
-//    }
   }
 }

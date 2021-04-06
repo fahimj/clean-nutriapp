@@ -21,6 +21,13 @@ struct DtoSearchRecipesResponse : Codable {
         case totalResults = "totalResults"
     }
     
+    init() {
+        number = nil
+        offset = nil
+        results = nil
+        totalResults = nil
+    }
+    
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         number = try values.decodeIfPresent(Int.self, forKey: .number)

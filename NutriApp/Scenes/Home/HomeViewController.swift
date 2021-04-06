@@ -8,21 +8,33 @@
 import UIKit
 
 import RxSwift
+import RxCocoa
+
 private let reuseIdentifier = "RecipeCollectionViewCell"
 
 class HomeViewController: UICollectionViewController {
     var homePresenter:HomePresenter!
     let disposeBag = DisposeBag()
+    lazy var searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        homePresenter.loadTrigger.accept(())
-        homePresenter.loadMoreTrigger.accept(())
         homePresenter.recipes.asDriver().drive(onNext: { [weak self] _ in
             self?.collectionView.reloadData()
         }).disposed(by: disposeBag)
+        
+        searchController.obscuresBackgroundDuringPresentation = false
+        
+        navigationItem.searchController = searchController
+        
+        searchController.searchBar.rx.text.orEmpty
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+            .do(onNext: {text in
+                print(text)
+            })
+            .bind(to: homePresenter.searchQuery)
+            .disposed(by: disposeBag)
     }
 
     // MARK: UICollectionViewDataSource
@@ -42,7 +54,7 @@ class HomeViewController: UICollectionViewController {
         cell.bindData(recipe: recipe)
         
         if homePresenter.recipes.value.count - 1 == indexPath.row {
-            homePresenter.loadMoreTrigger.accept(())
+            homePresenter.loadMoreTrigger.accept(searchController.searchBar.text ?? "")
         }
     
         return cell
@@ -51,7 +63,6 @@ class HomeViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         homePresenter.selection.accept(indexPath.row)
     }
-
 }
 
 extension HomeViewController : UICollectionViewDelegateFlowLayout {

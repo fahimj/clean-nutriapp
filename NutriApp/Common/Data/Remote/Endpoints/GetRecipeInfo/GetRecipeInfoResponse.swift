@@ -88,6 +88,7 @@ struct DtoRecipeInfo : Codable {
         case weightWatcherSmartPoints = "weightWatcherSmartPoints"
         case winePairing
     }
+    
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         aggregateLikes = try values.decodeIfPresent(Int.self, forKey: .aggregateLikes)

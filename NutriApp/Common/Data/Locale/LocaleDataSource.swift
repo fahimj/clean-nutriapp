@@ -152,35 +152,7 @@ final class LocaleDataSource : LocaleDataSourceProtocol {
             }
         }
         
-        
-        let objects = query.isEmpty ? realm.objects(RecipeRLM.self) : realm.objects(RecipeRLM.self).filter("title LIKE '\(query)'")
+        let objects = query.isEmpty ? realm.objects(RecipeRLM.self) : realm.objects(RecipeRLM.self).filter("title contains[c] '\(query)'")
         return Observable.array(from: objects)
-//        Observable<[RecipeRLM]>.create { observer in
-//            if let realm = self.realm {
-//                let recipes: Results<RecipeRLM> = {
-//                    realm.objects(RecipeRLM.self)
-//                        .sorted(byKeyPath: "title", ascending: true)
-//                }()
-//                observer.onNext(recipes.toArray(ofType: RecipeRLM.self))
-//                observer.onCompleted()
-//            } else {
-//                observer.onError(DatabaseError.invalidInstance)
-//            }
-//            return Disposables.create()
-//        }
     }
 }
-
-//extension Results {
-//
-//  func toArray<T>(ofType: T.Type) -> [T] {
-//    var array = [T]()
-//    for index in 0 ..< count {
-//      if let result = self[index] as? T {
-//        array.append(result)
-//      }
-//    }
-//    return array
-//  }
-//
-//}

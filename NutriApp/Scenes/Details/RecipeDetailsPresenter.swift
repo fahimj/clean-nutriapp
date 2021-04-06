@@ -79,8 +79,11 @@ final class RecipeDetailsPresenter {
             .catchErrorJustReturn("")
             .bind(to: ingredients).disposed(by: disposeBag)
         
+        
         isFavorite
-            .skip(2)
+            .distinctUntilChanged()
+            .do(onNext:{print("isFavorite: \($0)")})
+            .skip(1)
             .flatMap{[weak self] value -> Observable<Recipe> in
                 if (value) {
                     return self!.useCase.addToFavorites(recipe: self!.recipe)
